@@ -14,6 +14,7 @@ def generate_otp():
 
 def send_otp(user_email):
     otp = generate_otp()
+    server = None
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
@@ -36,7 +37,8 @@ For your safety, do not share this code with anyone.
     except Exception as e:
         print("❌ Error sending email:", e)
     finally:
-        server.quit()
+        if server:
+            server.quit()
     return otp
 
 
