@@ -2,6 +2,7 @@ from fastapi import FastAPI, Form
 from fastapi.responses import FileResponse, HTMLResponse
 import random
 import smtplib
+import os
 from datetime import datetime, timedelta
 
 app = FastAPI()
@@ -16,7 +17,8 @@ def send_otp(user_email):
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
-        server.login('root.x404.x@gmail.com', 'tnopuqahemdmprte')  # Gmail App Password
+        server.login(os.getenv("EMAIL_USER"), os.getenv("EMAIL_PASS"))  # from Render env vars
+
         message = f"""Subject: Your One-Time Password (OTP)
 
 Dear User,
@@ -27,10 +29,9 @@ Use this OTP to complete your verification process.
 It will remain valid for 10 minutes.
 For your safety, do not share this code with anyone.
 
-
 — Admin
 """
-        server.sendmail('root.x404.x@gmail.com', user_email, message.encode('utf-8'))
+        server.sendmail(os.getenv("EMAIL_USER"), user_email, message.encode('utf-8'))
         print(f"✅ OTP sent to {user_email}: {otp}")
     except Exception as e:
         print("❌ Error sending email:", e)
