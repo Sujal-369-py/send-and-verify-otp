@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beautiful Places</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Poppins", sans-serif; }
+    body {
+      background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
+      color: #333;
+      overflow-x: hidden;
+      transition: background 1s ease;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 40px; z-index: 1000;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    nav h1 { color: #4a47a3; font-size: 1.5rem; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover { color: #4a47a3; }
+
+    /* Hamburger */
+    .menu-btn {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .menu-btn div {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+      transition: background-image 1.2s ease-in-out;
+    }
+    .hero h2 { font-size: 2.5rem; margin-bottom: 10px; }
+    .hero p { font-size: 1.2rem; }
+
+    /* About Section */
+    section {
+      padding: 100px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Contact Section */
+    #contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+    }
+    .contact-card {
+      background: #fff;
+      padding: 30px 50px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    }
+
+    .contact-card h2 { margin-bottom: 10px; color: #333; }
+    .contact-card p { font-size: 16px; color: #555; line-height: 1.6; }
+    .contact-card a { color: #6c63ff; text-decoration: none; transition: color 0.3s; }
+    .contact-card a:hover { color: #333; }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px) {
+      .menu-btn { display: flex; }
+      nav ul {
+        position: absolute;
+        top: 70px; right: 0;
+        background: rgba(255,255,255,0.9);
+        flex-direction: column;
+        align-items: flex-start;
+        width: 200px;
+        padding: 20px;
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      nav ul.active {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>TravelScape</h1>
+    <div class="menu-btn" id="menu-btn">
+      <div></div><div></div><div></div>
+    </div>
+    <ul id="menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero" id="home">
+    <h2>Explore Beautiful Places</h2>
+    <p>Discover the world’s wonders one click at a time 🌍</p>
+  </div>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>We showcase breathtaking landscapes and destinations around the world.
+      From the mountains to the beaches, explore nature’s finest creations.</p>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Beach">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Mountains">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Lake">
+      <img src="https://images.unsplash.com/photo-1493558103817-58b2924bce98" alt="Forest">
+      <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7" alt="Desert">
+      <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff" alt="City">
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-card">
+      <h2>Contact Us</h2>
+      <p>Email: <a href="mailto:travel.with.me@gmail.com">travel.with.me@gmail.com</a><br>
+         Phone: <a href="tel:+918632233669">+91-86322-33669</a></p>
+    </div>
+  </section>
+  <script>
+    // Hero background changer
+    const hero = document.querySelector('.hero');
+    const images = [
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
+      'https://images.unsplash.com/photo-1501785888041-af3ef285b470',
+      'https://images.unsplash.com/photo-1493558103817-58b2924bce98',
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb'
+    ];
+    let index = 0;
+    function changeHero() {
+      hero.style.backgroundImage = `url('${images[index]}')`;
+      index = (index + 1) % images.length;
+    }
+    changeHero();
+    setInterval(changeHero, 5000);
+
+    // Responsive navbar
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+    menuBtn.addEventListener('click', () => {
+      menu.classList.toggle('active');
+      menuBtn.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
